@@ -14,4 +14,12 @@ describe(Todo) do
       expect(Todo.all()).to(eq([]))
     end
   end
+
+  describe("#save") do
+  it("adds a task to the array of saved tasks") do
+    test_task = Todo.new("wash the lion")
+    test_task.save()
+    expect(Todo.all()).to(eq([test_task]))
+  end
+end
 end
