@@ -9,17 +9,26 @@ describe(Todo) do
     end
   end
 
+  describe("#save") do
+    it("adds a task to the array of saved tasks") do
+      test_task = Todo.new("wash the lion")
+      test_task.save()
+      expect(Todo.all()).to(eq([test_task]))
+    end
+  end
+
+  describe(".clear") do
+    it("empties out all of the saved tasks") do
+      Todo.new("wash the lion").save()
+      Todo.clear()
+      expect(Todo.all()).to(eq([]))
+    end
+  end
+
   describe(".all") do
     it("is empty at first") do
       expect(Todo.all()).to(eq([]))
     end
   end
 
-  describe("#save") do
-  it("adds a task to the array of saved tasks") do
-    test_task = Todo.new("wash the lion")
-    test_task.save()
-    expect(Todo.all()).to(eq([test_task]))
-  end
-end
 end
