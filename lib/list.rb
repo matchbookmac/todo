@@ -25,4 +25,5 @@ class List
   define_method(:==) do |other_list|
     self.name().==(other_list.name()).&(self.id().==(other_list.id()))
   end
+
 end
