@@ -44,9 +44,9 @@ describe(List) do
     it('will return an array of the tasks for a given list') do
       test_list = List.new({:name => 'stuff', :id => nil})
       test_list.save()
-      test_task = Task.new({:description => 'complete to do app', :list_id => test_list.id(), :due_date => '2015-05-08'})
+      test_task = Task.new({:description => 'complete to do app', :list_id => test_list.id(), :due_date => '2015-05-08', :id => nil})
       test_task.save()
-      test_task_2 = Task.new({:description => 'learn SQL', :list_id => test_list.id(), :due_date => '2015-05-08'})
+      test_task_2 = Task.new({:description => 'learn SQL', :list_id => test_list.id(), :due_date => '2015-05-08', :id => nil})
       test_task_2.save()
       expect(test_list.tasks()).to(eq([test_task, test_task_2]))
     end

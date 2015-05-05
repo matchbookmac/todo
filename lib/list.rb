@@ -36,7 +36,8 @@ class List
     results.each() do |result|
       description = result.fetch('description')
       due_date = result.fetch('due_date')
-      task = Task.new({:description => description, :list_id => @id, :due_date => due_date})
+      id = result.fetch('id')
+      task = Task.new({:description => description, :list_id => @id, :due_date => due_date, :id => id})
       tasks.push(task)
     end
     tasks
