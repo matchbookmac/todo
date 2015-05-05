@@ -42,6 +42,12 @@ class List
     tasks
   end
 
+  define_method(:delete) do
+    @id = self.id()
+    DB.exec("DELETE FROM lists WHERE id = #{@id};")
+    DB.exec("DELETE FROM tasks WHERE list_id = #{@id};")
+  end
+
   define_method(:==) do |other_list|
     self.name().==(other_list.name()).&(self.id().==(other_list.id()))
   end

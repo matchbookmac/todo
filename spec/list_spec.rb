@@ -52,6 +52,15 @@ describe(List) do
     end
   end
 
+  describe('#delete') do
+    it("will delete a selected list from the collection of lists") do
+      test_list = List.new({:name => 'stuff', :id => nil})
+      test_list.save()
+      test_list.delete()
+      expect(List.all()).to(eq([]))
+    end
+  end
+
   describe("#==") do
     it('verifies if two lists are the same') do
       list1 = List.new({:name => "Epicodus stuff", :id => nil})
