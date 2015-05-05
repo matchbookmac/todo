@@ -1,11 +1,17 @@
 <h1>To Do</h1>
 
-<% if @lists.length() > 0 %>
+<% if !(@lists.==(nil)) %>
   <p>Available list(s):</p>
 
   <ul>
     <% @lists.each() do |list| %>
-      <li><a href="/list/<%= list.id() %>"><%= list.name() %></a></li>
+      <li>
+        <a href="/list/<%= list.id() %>"><%= list.name() %></a>
+        <form action="/" method="post">
+          <input id="delete" name="delete" type="hidden" value="<%= list.id() %>"></input>
+          <button type="submit" class="btn-danger">Delete</button>
+        </form>
+      </li>
     <% end %>
   </ul>
 <% else %>

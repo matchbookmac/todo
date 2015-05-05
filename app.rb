@@ -13,10 +13,19 @@ get("/") do
   erb(:index)
 end
 
+post('/') do
+# binding.pry
+  @id = params.fetch('delete')
+  @list = List.find(@id)
+  @list.delete()
+  @lists = List.all()
+  erb(:index)
+end
+
 post('/list/add') do
   @name = params.fetch('name')
-  new_list = List.new({:name => @name, :id => nil})
-  new_list.save()
+  @list = List.new({:name => @name, :id => nil})
+  @list.save()
   erb(:success)
 end
 

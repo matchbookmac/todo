@@ -4,6 +4,8 @@ require('spec_helper')
 Capybara.app = Sinatra::Application
 set(:show_exceptions, false)
 
+DB = PG.connect({:dbname => 'todo_list_test'})
+
 RSpec.configure do |config|
   config.after(:each) do
     DB.exec("DELETE FROM tasks *;")
