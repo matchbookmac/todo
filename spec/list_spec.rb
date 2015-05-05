@@ -14,6 +14,14 @@ describe(List) do
     end
   end
 
+  describe('#id') do
+    it('sets the object id when it is saved') do
+      test_list = List.new({:name => 'stuff', :id => nil})
+      test_list.save()
+      expect(test_list.id()).to(be_an_instance_of(Fixnum))
+    end
+  end
+
   describe('#save') do
     it('save a list to the database') do
       test_list = List.new({:name => 'stuff', :id => nil})
@@ -22,11 +30,25 @@ describe(List) do
     end
   end
 
-  describe('#id') do
-    it('sets the object id when it is saved') do
+  describe('.find') do
+    it('will return a list based on its id') do
       test_list = List.new({:name => 'stuff', :id => nil})
       test_list.save()
-      expect(test_list.id()).to(be_an_instance_of(Fixnum))
+      test_list_2 = List.new({:name => 'things', :id => nil})
+      test_list_2.save()
+      expect(List.find(test_list_2.id())).to(eq(test_list_2))
+    end
+  end
+
+  describe('#tasks') do
+    it('will return an array of the tasks for a given list') do
+      test_list = List.new({:name => 'stuff', :id => nil})
+      test_list.save()
+      test_task = Task.new({:description => 'complete to do app', :list_id => test_list.id(), :due_date => '2015-05-08'})
+      test_task.save()
+      test_task_2 = Task.new({:description => 'learn SQL', :list_id => test_list.id(), :due_date => '2015-05-08'})
+      test_task_2.save()
+      expect(test_list.tasks()).to(eq([test_task, test_task_2]))
     end
   end
 

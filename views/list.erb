@@ -1,0 +1,11 @@
+<p class="lead"><%= @list.name() %>:</p>
+
+<ul>
+  <% @tasks.each() do |task| %>
+    <li><%= task.description().concat("  Due: " + task.due_date()) %></li>
+  <% end %>
+</ul>
+
+<a href="/">View or create another list</a>
+<br>
+<a href="/list/<%= @list.id() %>/task/add">Add a new task to this list</a>

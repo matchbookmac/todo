@@ -1,18 +1,21 @@
 <h1>To Do</h1>
 
-<p>Here are all your tasks:</p>
+<% if @lists.length() > 0 %>
+  <p>Available list(s):</p>
 
-<ul>
-  <% @tasks.each() do |task| %>
-    <li><%= task.description() %></li>
-  <% end %>
-</ul>
+  <ul>
+    <% @lists.each() do |list| %>
+      <li><a href="/list/<%= list.id() %>"><%= list.name() %></a></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>You don't have any lists right now!</p>
+<% end %>
 
-<p>Create a new task:</p>
-
-<form action="/tasks" method="post">
-  <label for="description">Task Description</label>
-  <input id="description" name="description" type="text">
-
-  <button type="submit">Add task</button>
+<form action = "/list/add" method = "post">
+  <div class = "form-group">
+    <label for = "name">Create a new list by entering its name below:</label>
+    <input id = "name" name = "name" class = "form-control" type = "text">
+  </div>
+  <button type = "submit" class="btn-success">Add</button>
 </form>
